@@ -1,0 +1,17 @@
+<div class="navbar">
+  <a href="/" class="logo">
+    <img src="/static/images/logo.png" alt="Logo" class="logo-img">
+    NLP Application
+  </a>
+  <nav>
+    {% if session.get('logged_in') %}
+      <button onclick="location.href='/textpage'">Information Extraction</button>
+      <button onclick="location.href='/logout'">Logout</button>
+    {% else %}
+      <button onclick="location.href='/login'">Login</button>
+      <button onclick="location.href='/register'">Register</button>
+    {% endif %}
+  </nav>
+</div>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">

@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #a8d0ff, #3a7bd5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+.container {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container h2 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+    text-align: left;
+}
+
+select {
+    padding: 10px 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1.2px solid #666;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%225%22%20viewBox%3D%220%200%2010%205%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200L5%205L10%200H0Z%22%20fill%3D%22%23666%22/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 10px 5px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 150px;
+    padding: 10px 12px;
+    font: inherit;
+    font-weight: normal;
+    font-size: 1em;
+    color: inherit;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(33, 150, 243, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+    width: fit-content;
+    margin: 0 auto 20px auto;
+}
+
+button:hover {
+    background-color: #1e88e5;
+    box-shadow: 0 6px 14px rgba(30, 136, 229, 0.6);
+}
+
+button:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 7px rgba(30, 136, 229, 0.8);
+}
+
+.result-text {
+   font-weight: normal;
+    font-size: 16px;
+    color: #222;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    text-indent: 2em;
+}
+

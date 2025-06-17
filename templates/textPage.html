@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Process Text</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/textPage.css') }}">
+    <style>
+        /* Spațiu între textarea și buton */
+        textarea {
+            display: block;
+            width: 100%;
+            min-height: 150px;
+            margin-bottom: 15px; /* spațiu sub textarea */
+            font-size: 1rem;
+            padding: 8px;
+        }
+
+        /* Buton mai mic și centrat */
+        button {
+            display: block;
+            margin: 0 auto 20px auto; /* centru orizontal + spațiu jos */
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Rezultatul - doar text simplu, fără border sau altceva */
+        .result p {
+            margin-top: 0;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <h2>Information Extraction</h2>
+        <form method="POST" action="/process">
+            <label for="text-input">Enter text:</label>
+            <textarea id="text-input" name="text" required>{{ request.form.get('text', '') }}</textarea>
+
+            <button type="submit">Process</button>
+
+            {% if result %}
+                <div class="result-text">{{ result }}</div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="task-select">Select task:</label>
+                <select id="task-select" name="task" onchange="toggleHighlightCheckbox()">
+                    <option value="summarization" {% if request.form.get('task') == 'summarization' %}selected{% endif %}>Summarization</option>
+                    <option value="classification" {% if request.form.get('task') == 'classification' %}selected{% endif %}>Classification</option>
+                </select>
+            </div>
+
+            <div class="checkbox-group" id="highlight-entities-group">
+                <input type="checkbox" id="highlight-entities" name="highlight_entities"
+                {% if request.form.get('highlight_entities') %}checked{% endif %}>
+                <label for="highlight-entities">Highlight entities</label>
+            </div>
+
+            <!-- Dacă vrei poți elimina butonul 2 dacă nu este nevoie -->
+            <!-- <button type="submit">Process</button> -->
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/textPageScripts.js') }}"></script>
+
+    {% include 'footer.html' %}
+
+</body>
+</html>

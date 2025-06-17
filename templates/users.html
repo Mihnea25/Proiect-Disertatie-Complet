@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista Utilizatori</title>
+</head>
+<body>
+    <h1>Utilizatori înregistrați</h1>
+
+    {% if users %}
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Hash</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.password_hash }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Nu există utilizatori în baza de date.</p>
+    {% endif %}
+</body>
+</html>
