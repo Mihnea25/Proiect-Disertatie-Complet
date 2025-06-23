@@ -23,6 +23,8 @@
 
             <div class="form-group">
                 <label for="task-select">Select task:</label>
+
+
                 <select id="task-select" name="task" onchange="toggleHighlightCheckbox()">
                     <option value="summarization" {% if request.form.get('task') == 'summarization' %}selected{% endif %}>Summarization</option>
                     <option value="classification" {% if request.form.get('task') == 'classification' %}selected{% endif %}>Classification</option>
@@ -35,8 +37,7 @@
                 <label for="highlight-entities">Highlight entities</label>
             </div>
 
-            <!-- Dacă vrei poți elimina butonul 2 dacă nu este nevoie -->
-            <!-- <button type="submit">Process</button> -->
+            
         </form>
     </div>
 

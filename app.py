@@ -113,27 +113,34 @@ def register():
 
 @app.route('/process', methods=['GET', 'POST'])
 def process():
-    if request.method == 'POST':
-        input_text = request.form.get('text')
-        task = request.form.get('task')
-        highlight = request.form.get('highlight_entities')
+    result = None
+    input_text = ''
+    task = 'summarization'  # valoare default
+    highlight = False
 
-        result = None
+    if request.method == 'POST':
+        input_text = request.form.get('text', '')
+        task = request.form.get('task', 'summarization')
+        highlight = bool(request.form.get('highlight_entities'))
+
         if input_text:
             if task == 'classification':
                 result = classify_text(input_text)
             elif task == 'summarization':
-                result = generate_summary(input_text,20,100) 
+                summary = generate_summary(input_text, 100, 20)
                 if highlight:
-                    result = highlight_list_entities(result)
+                    result = highlight_list_entities(summary)
+                else:
+                    result = summary
+
+    return render_template('textPage.html',
+                           result=result,
+                           text=input_text,
+                           task=task,
+                           highlight=highlight)
 
 
-            session['result'] = result
-        
-        return redirect(url_for('process'))
 
-    result = session.pop('result', None)
-    return render_template('textPage.html', result=result)
 
 # Ruta pentru pagina personalizata textPage.html
 @app.route('/textpage')
