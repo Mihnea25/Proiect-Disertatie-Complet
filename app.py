@@ -5,6 +5,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import re
 
 from backend_files.python_files.classification import classify_text
+from backend_files.python_files.summarization.summarization import generate_summary
+from backend_files.python_files.summarization.highlight_entities import highlight_list_entities
 
 
 app = Flask(__name__)
@@ -113,9 +115,21 @@ def register():
 def process():
     if request.method == 'POST':
         input_text = request.form.get('text')
+        task = request.form.get('task')
+        highlight = request.form.get('highlight_entities')
+
+        result = None
         if input_text:
-            result = classify_text(input_text)
+            if task == 'classification':
+                result = classify_text(input_text)
+            elif task == 'summarization':
+                result = generate_summary(input_text,20,100) 
+                if highlight:
+                    result = highlight_list_entities(result)
+
+
             session['result'] = result
+        
         return redirect(url_for('process'))
 
     result = session.pop('result', None)

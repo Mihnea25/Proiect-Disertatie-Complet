@@ -1,29 +1,27 @@
 import spacy 
 from spacy import displacy
 
+nlp = spacy.load("en_core_web_trf")
 
 #functie care afiseaza textul cu displacy, afiseaza o lista de entitati si explica entitatile
 def highlight_list_entities(text):
-
     doc = nlp(text)
+    output = ""
 
-    displacy.render(doc, style="ent", jupyter=True)
-
-    #verifica daca exista entitati
     if doc.ents:
-        print("\nNamed Entities found:")
+        output += "Named Entities found:\n"
         found_labels = set()
         i = 1
-        #afiseaza textul cu entitatea corespunzatoare si adauga labelul in lista
         for ent in doc.ents:
-            print(f"{i}.{ent.text} ({ent.label_})")
+            output += f"{i}. {ent.text} ({ent.label_})\n"
             found_labels.add(ent.label_)
-            i+=1
+            i += 1
 
-        #explica doar entitatile din lista
-        print("\nEntity label explanations:")
+        output += "\nEntity label explanations:\n"
         for label in sorted(found_labels):
             explanation = spacy.explain(label)
-            print(f"{label}: {explanation}")
+            output += f"{label}: {explanation}\n"
     else:
-        print("No named entities found.")
+        output += "No named entities found."
+
+    return output
